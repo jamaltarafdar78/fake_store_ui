@@ -1,5 +1,7 @@
+import classNames from 'classnames';
+
 export const Table = ({ tableHeadings, data }) => (
-  <table style={{ color: 'black' }}>
+  <table className={classNames('table', 'table-striped')}>
     <thead>
       <tr key="products-table">
         {Array(...tableHeadings).map((heading) => (
