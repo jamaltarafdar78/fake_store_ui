@@ -6,8 +6,13 @@ export const AppStatusTypes = {
   DATA_LOADED: 'data_loaded',
 };
 
+const AppStatusTypesValues = Object.values(AppStatusTypes);
+
 const initialState = AppStatusTypes.LOADING;
-const reducer = (state = initialState, { type }) => type;
+const reducer = (state = initialState, { type }) => {
+  if (AppStatusTypesValues.includes(type)) return type;
+  return state;
+};
 
 export default reducer;
 
