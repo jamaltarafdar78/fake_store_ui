@@ -3,11 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+import { useSelector } from 'react-redux';
+import { useAppStatusDispatcher } from './redux/reducers/app-status';
+
+const AppWithDispathcerAndState = () => {
+  const state = useSelector((state) => state);
+  return <App dispatcher={useAppStatusDispatcher()} state={state} />;
+};
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <AppWithDispathcerAndState />
+    </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
 );
 
