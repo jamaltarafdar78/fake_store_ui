@@ -40,7 +40,7 @@ describe('fetchAllProductsAndCategories saga', () => {
     expect(appStatusAfterLoading).toEqual(AppStatusTypes.DATA_LOADED);
   });
 
-  test('WHEN fetchAllProductsAndCategories saga is called and data retrived has error THEN the store is unaffected and appStatus is LOADING_ERROR', async () => {
+  test('WHEN data retrived has error THEN the store is unaffected and appStatus is LOADING_ERROR', async () => {
     jest.spyOn(Services, 'getProducts').mockRejectedValue('Retrival failed');
 
     const { appStatus, products } = store.getState();
