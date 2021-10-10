@@ -6,11 +6,16 @@ import reportWebVitals from './reportWebVitals';
 import { Provider, useDispatch } from 'react-redux';
 import store from './redux/store';
 import { useSelector } from 'react-redux';
-import { displayCategoryTextAndValue } from './utils';
+import { displayCategoryTextAndValue, titleCaseString } from './utils';
 
 const AppWithDispathcerAndState = () => {
   const dispatcher = useDispatch();
-  const state = useSelector(({ categories, ...rest }) => ({
+  const state = useSelector(({ categories, products, ...rest }) => ({
+    products: products.map(({ category, price, ...restProducts }) => ({
+      category: titleCaseString(category),
+      price: Number(price).toFixed(2),
+      ...restProducts,
+    })),
     categories: displayCategoryTextAndValue(categories),
     ...rest,
   }));

@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import './table.css';
 
 export const Table = ({ tableHeadings, data }) => (
   <table className={classNames('table', 'table-striped')}>
@@ -15,8 +16,8 @@ export const Table = ({ tableHeadings, data }) => (
       {Array(...data).map(({ id, title, price, category }) => (
         <tr key={id}>
           <td>{id}</td>
-          <td>{title}</td>
-          <td>{price}</td>
+          <td className="title-align">{title}</td>
+          <td className="currency-align">{price}</td>
           <td>{category}</td>
         </tr>
       ))}
