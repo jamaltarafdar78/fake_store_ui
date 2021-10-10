@@ -12,10 +12,12 @@ export const Table = ({ tableHeadings, data }) => (
       </tr>
     </thead>
     <tbody>
-      {Array(...data).map(({ id, title }) => (
+      {Array(...data).map(({ id, title, price, category }) => (
         <tr key={id}>
           <td>{id}</td>
           <td>{title}</td>
+          <td>{price}</td>
+          <td>{category}</td>
         </tr>
       ))}
     </tbody>

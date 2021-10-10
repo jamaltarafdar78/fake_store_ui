@@ -1,18 +1,23 @@
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { FilterControls, ALL, titleCaseString } from '.';
+import { FilterControls } from '.';
 import { AppStatusTypes } from '../../redux/reducers/app-status';
+import { ALL, displayCategoryTextAndValue, titleCaseString } from '../../utils';
 
 const mockDispatcher = jest.fn();
 const categories = ['category 1', 'category 2'];
+const categoriesWithDisplayValues = displayCategoryTextAndValue(categories);
 
 describe('<FilterControl />', () => {
   test('when ALL is selected, dispatcher is called with type to get all', () => {
     const { getByLabelText, getByText } = render(
-      <FilterControls dispatcher={mockDispatcher} categories={categories} />
+      <FilterControls
+        dispatcher={mockDispatcher}
+        categories={categoriesWithDisplayValues}
+      />
     );
     const selectedOptionText = ALL;
-    expect(getByText('All')).toBeInTheDocument();
+    expect(getByText(selectedOptionText)).toBeInTheDocument();
 
     userEvent.selectOptions(
       getByLabelText('Selected Category'),
@@ -30,7 +35,10 @@ describe('<FilterControl />', () => {
 
   test('when a CATEGORY is selected, dispatcher is called with type to get products for that CATEGORY', () => {
     const { getByLabelText, getByText } = render(
-      <FilterControls dispatcher={mockDispatcher} categories={categories} />
+      <FilterControls
+        dispatcher={mockDispatcher}
+        categories={categoriesWithDisplayValues}
+      />
     );
     const selectedOptionValue = categories[0];
     const selectedOptionText = titleCaseString(selectedOptionValue);

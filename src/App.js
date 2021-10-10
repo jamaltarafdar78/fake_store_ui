@@ -43,7 +43,10 @@ function App({ dispatcher, state: { appStatus, products, categories } }) {
         )}
 
         {showProducts && (
-          <Table data={products} tableHeadings={['Product Id', 'Title']} />
+          <Table
+            data={products}
+            tableHeadings={['Product Id', 'Title', 'Price', 'Category']}
+          />
         )}
 
         {appStatus === AppStatusTypes.LOADING_ERROR && <div>Error</div>}

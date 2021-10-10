@@ -6,10 +6,14 @@ import reportWebVitals from './reportWebVitals';
 import { Provider, useDispatch } from 'react-redux';
 import store from './redux/store';
 import { useSelector } from 'react-redux';
+import { displayCategoryTextAndValue } from './utils';
 
 const AppWithDispathcerAndState = () => {
   const dispatcher = useDispatch();
-  const state = useSelector((state) => state);
+  const state = useSelector(({ categories, ...rest }) => ({
+    categories: displayCategoryTextAndValue(categories),
+    ...rest,
+  }));
   return <App dispatcher={dispatcher} state={state} />;
 };
 

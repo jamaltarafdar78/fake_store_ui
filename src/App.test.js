@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 import { AppStatusTypes } from './redux/reducers/app-status';
+import { displayCategoryTextAndValue } from './utils';
 
 const mockDispatcher = jest.fn();
 
@@ -31,7 +32,7 @@ describe('<App />', () => {
             { id: 1, title: 'product 1' },
             { id: 2, title: 'product 2' },
           ],
-          categories: ['category 1', 'category 2'],
+          categories: displayCategoryTextAndValue(['category 1', 'category 2']),
         }}
       />
     );
