@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { Provider } from 'react-redux';
+import { Provider, useDispatch } from 'react-redux';
 import store from './redux/store';
 import { useSelector } from 'react-redux';
-import { useAppStatusDispatcher } from './redux/reducers/app-status';
 
 const AppWithDispathcerAndState = () => {
+  const dispatcher = useDispatch();
   const state = useSelector((state) => state);
-  return <App dispatcher={useAppStatusDispatcher()} state={state} />;
+  return <App dispatcher={dispatcher} state={state} />;
 };
 
 ReactDOM.render(

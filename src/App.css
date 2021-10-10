@@ -1,5 +1,8 @@
 .App {
+  display: flex;
+  flex-direction: column;
   text-align: center;
+  font-size: calc(10px + 2vmin);
 }
 
 .App-logo {
@@ -13,13 +16,21 @@
   }
 }
 
-.App-header {
-  min-height: 100vh;
+.App-main {
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+
+  color: white;
+}
+
+.App-header {
+  min-height: 10vh;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
   color: white;
 }
 

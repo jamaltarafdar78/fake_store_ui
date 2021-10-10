@@ -1,7 +1,12 @@
 import { all } from 'redux-saga/effects';
-import { getProductsByCategory } from '../../services';
-import { getAllProductsAndCategoriesFromAction } from './productsAndCategoriesSaga';
+import {
+  getAllProductsAndCategoriesFromAction,
+  getProductByCategoryFromAction,
+} from './productsAndCategoriesSaga';
 
 export function* sagas() {
-  yield all([getAllProductsAndCategoriesFromAction(), getProductsByCategory()]);
+  yield all([
+    getAllProductsAndCategoriesFromAction(),
+    getProductByCategoryFromAction(),
+  ]);
 }

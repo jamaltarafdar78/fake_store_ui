@@ -1,0 +1,21 @@
+.filter-controls-wrapper {
+  margin: 10px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.category-label {
+  width: 100%;
+  height: 100%;
+  font-size: calc(10px + 2vmin);
+  text-align: left;
+  color: black;
+}
+
+.category-selector {
+  height: 100%;
+  width: 100%;
+  top: 10px;
+  font-size: calc(10px + 2vmin);
+}

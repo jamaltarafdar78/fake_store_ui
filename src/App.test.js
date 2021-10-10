@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import App from './App';
 import { AppStatusTypes } from './redux/reducers/app-status';
 
@@ -14,10 +13,12 @@ describe('<App />', () => {
     render(
       <App
         dispatcher={mockDispatcher}
-        state={{ appStatus: null, products: [] }}
+        state={{ appStatus: null, products: [], categories: [] }}
       />
     );
-    expect(mockDispatcher).toHaveBeenCalledWith(AppStatusTypes.LOADING_ALL);
+    expect(mockDispatcher).toHaveBeenCalledWith({
+      type: AppStatusTypes.LOADING_ALL,
+    });
   });
 
   test('When products loaded, they are displayed, and reloading dispatches the correct action', () => {
@@ -30,12 +31,10 @@ describe('<App />', () => {
             { id: 1, title: 'product 1' },
             { id: 2, title: 'product 2' },
           ],
+          categories: ['category 1', 'category 2'],
         }}
       />
     );
-
-    const restartLoading = screen.getByText(/Reload Products/i);
-    expect(restartLoading).toBeInTheDocument();
 
     const product1 = screen.getByText(/product 1/i);
     expect(product1).toBeInTheDocument();
@@ -43,8 +42,7 @@ describe('<App />', () => {
     const product2 = screen.getByText(/product 1/i);
     expect(product2).toBeInTheDocument();
 
-    userEvent.click(restartLoading);
-
-    expect(mockDispatcher).toHaveBeenLastCalledWith(AppStatusTypes.LOADING);
+    const allCategories = screen.getByText(/All/i);
+    expect(allCategories).toBeInTheDocument();
   });
 });
