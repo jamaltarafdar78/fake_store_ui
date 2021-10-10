@@ -7,18 +7,27 @@ import { Provider, useDispatch } from 'react-redux';
 import store from './redux/store';
 import { useSelector } from 'react-redux';
 import { displayCategoryTextAndValue, titleCaseString } from './utils';
+import { genPriceFilter } from './redux/reducers/price-filter';
 
 const AppWithDispathcerAndState = () => {
   const dispatcher = useDispatch();
-  const state = useSelector(({ categories, products, ...rest }) => ({
-    products: products.map(({ category, price, ...restProducts }) => ({
-      category: titleCaseString(category),
-      price: Number(price).toFixed(2),
-      ...restProducts,
-    })),
-    categories: displayCategoryTextAndValue(categories),
-    ...rest,
-  }));
+  const state = useSelector(
+    ({ categories, products, priceFilter, ...rest }) => {
+      const filteredProducts = products.filter(genPriceFilter(priceFilter));
+
+      return {
+        products: filteredProducts.map(
+          ({ category, price, ...restProducts }) => ({
+            category: titleCaseString(category),
+            price: Number(price).toFixed(2),
+            ...restProducts,
+          })
+        ),
+        categories: displayCategoryTextAndValue(categories),
+        ...rest,
+      };
+    }
+  );
   return <App dispatcher={dispatcher} state={state} />;
 };
 

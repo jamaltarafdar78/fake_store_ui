@@ -5,6 +5,7 @@ import { useEffect, useMemo } from 'react';
 import classNames from 'classnames';
 import { Table } from './components/table';
 import { CategorySelector } from './components/category-selector';
+import { PriceFilter } from './components/pricing-filter';
 
 function App({ dispatcher, state: { appStatus, products, categories } }) {
   useEffect(() => {
@@ -22,15 +23,23 @@ function App({ dispatcher, state: { appStatus, products, categories } }) {
     () => appStatus === AppStatusTypes.DATA_LOADED && products.length > 0,
     [appStatus, products]
   );
+
+  const noMatchingProducts = useMemo(
+    () => appStatus === AppStatusTypes.DATA_LOADED && products.length === 0,
+    [appStatus, products]
+  );
   return (
     <div className="App">
       <header className="App-header">
         {
-          <CategorySelector
-            categories={categories}
-            dispatcher={dispatcher}
-            disabled={isLoading}
-          />
+          <>
+            <CategorySelector
+              categories={categories}
+              dispatcher={dispatcher}
+              disabled={isLoading}
+            />
+            <PriceFilter dispatcher={dispatcher} disabled={isLoading} />
+          </>
         }
       </header>
       <main className="App-main">
@@ -48,6 +57,8 @@ function App({ dispatcher, state: { appStatus, products, categories } }) {
             tableHeadings={['Product Id', 'Title', 'Price', 'Category']}
           />
         )}
+
+        {noMatchingProducts && <div>No matching products found</div>}
 
         {appStatus === AppStatusTypes.LOADING_ERROR && <div>Error</div>}
       </main>
