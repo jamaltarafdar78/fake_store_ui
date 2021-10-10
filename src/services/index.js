@@ -5,3 +5,6 @@ export const getProducts = () =>
 
 export const getCategories = () =>
   fetch(`${apiURL}/categories`).then((response) => response.json());
+
+export const getProductsByCategory = (category) =>
+  fetch(`${apiURL}/category/${category}`).then((response) => response.json());

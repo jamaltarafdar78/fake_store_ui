@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 
 export const AppStatusTypes = {
   LOADING_ALL: 'loading',
+  LOAD_BY_CATEGORY: 'load_by_category',
   LOADING_ERROR: 'loading_error',
   DATA_LOADED: 'data_loaded',
 };
