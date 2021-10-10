@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
 import { AppStatusTypes } from '../../redux/reducers/app-status';
 import { ALL } from '../../utils';
-import './filter-controls.css';
+import './category-selector.css';
 
-export const FilterControls = ({ dispatcher, categories, disabled }) => {
+export const CategorySelector = ({ dispatcher, categories, disabled }) => {
   const onSelectCategoryChange = useCallback(
     (event) => {
       if (!dispatcher) return console.log('Dispatcher not set!');

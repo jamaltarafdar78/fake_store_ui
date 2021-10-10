@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { FilterControls } from '.';
+import { CategorySelector } from '.';
 import { AppStatusTypes } from '../../redux/reducers/app-status';
 import { ALL, displayCategoryTextAndValue, titleCaseString } from '../../utils';
 
@@ -11,7 +11,7 @@ const categoriesWithDisplayValues = displayCategoryTextAndValue(categories);
 describe('<FilterControl />', () => {
   test('when ALL is selected, dispatcher is called with type to get all', () => {
     const { getByLabelText, getByText } = render(
-      <FilterControls
+      <CategorySelector
         dispatcher={mockDispatcher}
         categories={categoriesWithDisplayValues}
       />
@@ -35,7 +35,7 @@ describe('<FilterControl />', () => {
 
   test('when a CATEGORY is selected, dispatcher is called with type to get products for that CATEGORY', () => {
     const { getByLabelText, getByText } = render(
-      <FilterControls
+      <CategorySelector
         dispatcher={mockDispatcher}
         categories={categoriesWithDisplayValues}
       />

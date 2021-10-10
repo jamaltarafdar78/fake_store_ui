@@ -4,7 +4,7 @@ import { AppStatusTypes } from './redux/reducers/app-status';
 import { useEffect, useMemo } from 'react';
 import classNames from 'classnames';
 import { Table } from './components/table';
-import { FilterControls } from './components/filter-controls';
+import { CategorySelector } from './components/category-selector';
 
 function App({ dispatcher, state: { appStatus, products, categories } }) {
   useEffect(() => {
@@ -26,7 +26,7 @@ function App({ dispatcher, state: { appStatus, products, categories } }) {
     <div className="App">
       <header className="App-header">
         {
-          <FilterControls
+          <CategorySelector
             categories={categories}
             dispatcher={dispatcher}
             disabled={isLoading}
