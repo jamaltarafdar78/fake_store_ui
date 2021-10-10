@@ -1,6 +1,6 @@
 import { all } from 'redux-saga/effects';
-import { getProductsFromAction } from './productsSaga';
+import { getAllProductsAndCategoriesFromAction } from './productsAndCategoriesSaga';
 
 export function* sagas() {
-  yield all([getProductsFromAction()]);
+  yield all([getAllProductsAndCategoriesFromAction()]);
 }
