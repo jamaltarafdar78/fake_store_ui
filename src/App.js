@@ -7,12 +7,12 @@ import { Table } from './components/table';
 
 function App({ dispatcher, state: { appStatus, products } }) {
   useEffect(() => {
-    dispatcher(AppStatusTypes.LOADING);
+    dispatcher(AppStatusTypes.LOADING_ALL);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const isLoading = useMemo(
-    () => appStatus === AppStatusTypes.LOADING,
+    () => appStatus === AppStatusTypes.LOADING_ALL,
     [appStatus]
   );
   const showProducts = useMemo(

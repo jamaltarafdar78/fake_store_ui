@@ -17,7 +17,7 @@ describe('<App />', () => {
         state={{ appStatus: null, products: [] }}
       />
     );
-    expect(mockDispatcher).toHaveBeenCalledWith(AppStatusTypes.LOADING);
+    expect(mockDispatcher).toHaveBeenCalledWith(AppStatusTypes.LOADING_ALL);
   });
 
   test('When products loaded, they are displayed, and reloading dispatches the correct action', () => {

@@ -4,7 +4,7 @@ import { AppStatusTypes } from '../reducers/app-status';
 import { ProductDataTypes } from '../reducers/products';
 import { CategoriesTypes } from '../reducers/categories';
 
-export function* fetchProductsAndCategories() {
+export function* fetchAllProductsAndCategories() {
   try {
     const [products, categories] = yield all([
       call(getProducts),
@@ -19,5 +19,5 @@ export function* fetchProductsAndCategories() {
 }
 
 export function* getAllProductsAndCategoriesFromAction() {
-  yield takeEvery(AppStatusTypes.LOADING, fetchProductsAndCategories);
+  yield takeEvery(AppStatusTypes.LOADING_ALL, fetchAllProductsAndCategories);
 }

@@ -3,7 +3,7 @@ import { applyMiddleware, createStore } from 'redux';
 import * as Services from '../../services';
 import rootReducer from '../reducers';
 import { AppStatusTypes } from '../reducers/app-status';
-import { fetchProductsAndCategories } from './productsAndCategoriesSaga';
+import { fetchAllProductsAndCategories } from './productsAndCategoriesSaga';
 
 test('WHEN fetchProducts saga is called and data retrived successfully THEN the store is updated with retreived products and appStatus is DATA_LOADED', async () => {
   const retrivedProducts = [
@@ -23,9 +23,9 @@ test('WHEN fetchProducts saga is called and data retrived successfully THEN the 
   const { appStatus, products, categories } = store.getState();
   expect(categories).toEqual([]);
   expect(products).toEqual([]);
-  expect(appStatus).toEqual(AppStatusTypes.LOADING);
+  expect(appStatus).toEqual(AppStatusTypes.LOADING_ALL);
 
-  await runSaga(store, fetchProductsAndCategories);
+  await runSaga(store, fetchAllProductsAndCategories);
 
   const { appStatus: appStatusAfterLoading, products: productsAfterLoading } =
     store.getState();
@@ -43,9 +43,9 @@ test('WHEN fetchProducts saga is called and data retrived has error THEN the sto
 
   const { appStatus, products } = store.getState();
   expect(products).toEqual([]);
-  expect(appStatus).toEqual(AppStatusTypes.LOADING);
+  expect(appStatus).toEqual(AppStatusTypes.LOADING_ALL);
 
-  await runSaga(store, fetchProductsAndCategories);
+  await runSaga(store, fetchAllProductsAndCategories);
 
   const {
     appStatus: appStatusAfterLoading,
